@@ -11,7 +11,7 @@ var validator = require("email-validator");
 const fetch = require('node-fetch');
 const ImageModel = require('./model/img');
 const fileUpload = require("express-fileupload");
-
+app.use(express.json())
 
 const nodemailer = require("nodemailer");
 
@@ -66,7 +66,9 @@ app.use(
   fileUpload()
   );
 app.post('/',(req,res)=>{
+  console.log(req.body)
   let email = req.body.email
+  console.log(email)
   mailSend(email)
   
 })
