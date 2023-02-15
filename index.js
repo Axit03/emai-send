@@ -39,31 +39,36 @@ let transporter = nodemailer.createTransport({
     service: "gmail",
    
     auth: {
-      user: 'axit720@gmail.com', // generated ethereal user
-      pass: 'uvtuklmjcyqllmvr', // generated ethereal password
+      user: 'axit.patel@pedalsup.com', // generated ethereal user
+      pass: 'gbklsmdqfrcbhhfe', // generated ethereal password
     },
   });
 
-  
-const mailSend=async()=>{
+  let url  = "https://pink-steaks-attack-122-170-68-94.loca.lt"
+  let content = "Hello there"
+const mailSend=async(email)=>{
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: 'axit720@gamil.com', // sender address
-    to: "axit.patel@pedalsup.com", // list of receivers
+    from: 'axit.patel@pedalsup.com', // sender address
+    to: email, // list of receivers
     subject: "Hello ✔", // Subject line
     text: "Hello world?", // plain text body
-    html: `<img src="https://silent-buttons-give-122-170-68-94.loca.lt/event"/>` // 
+    html: `<div>
+    <p>${content}</p>
+    <img src='${url}/event'/>
+    </div>`, 
   });
 
    console.log("Message sent: %s", info.messageId);
 }
-mailSend()
 
 app.use(
   fileUpload()
-);
+  );
 app.get('/',(req,res)=>{
-  console.log('hello')
+  let email = req.body.email
+  mailSend(email)
+  
 })
 app.get('/event',async(req,res)=>{
     console.log("hit")
