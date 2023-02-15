@@ -44,7 +44,7 @@ let transporter = nodemailer.createTransport({
     },
   });
 
-  let url  = "https://pink-steaks-attack-122-170-68-94.loca.lt"
+  let url  = "http://3.0.201.14:8080/"
   let content = "Hello there"
 const mailSend=async(email)=>{
   // send mail with defined transport object
@@ -65,16 +65,16 @@ const mailSend=async(email)=>{
 app.use(
   fileUpload()
   );
-app.get('/',(req,res)=>{
+app.post('/',(req,res)=>{
   let email = req.body.email
   mailSend(email)
   
 })
 app.get('/event',async(req,res)=>{
     console.log("hit")
-    const img  = await ImageModel.find()
+    // const img  = await ImageModel.find()
     // console.log(img)
-    res.send(img[0].Image)
+    res.send(Buffer.from('R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=', 'base64'))
   })
 
   // app.post( '/upload' ,(req, res) => {
